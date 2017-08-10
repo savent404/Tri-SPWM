@@ -1,59 +1,39 @@
 #include "wave.h"
 #include "adc.h"
 
-#define N 400 //20Khz / 50 = 400
+#define N 800 //20Khz / 50 = 400
 float T1_Vrms = 0;
 uint32_t VA_CNT = 0;
 
-#ifdef WAVE_ARRY
-uint32_t VA[N];
-#else // ≤ª  ”√Arry£¨÷±Ω”‘⁄“ª÷‹∆⁄…œ¿€º”
-uint64_t VA_VAL = 0;
-#endif
-
+uint16_t VA_M[2] = {0, 0}; // ÊúÄÂ§ß„ÄÅÊúÄÂ∞èÂÄº
+uint16_t _VA_M[2] = {0, 4096};
 void Arry_IN(void)
 {
-    int32_t buf = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
-    buf -= 2048;
-    
-#ifdef WAVE_ARRY
-    VA[VA_CNT] = buf * buf;
-#else
-    VA_VAL += buf * buf;
-#endif
-    
-    if (++VA_CNT == N)
+    uint16_t buf = HAL_ADCEx_InjectedGetValue(&hadc1, ADC_INJECTED_RANK_1);
+
+    if (_VA_M[0] < buf) _VA_M[0] = buf;
+    if (_VA_M[1] > buf) _VA_M[1] = buf;
+
+    if (++VA_CNT >= N)
     {
         VA_CNT = 0;
         
-        T1_Vrms = GetVrms();
-
+        T1_Vrms = GetVrms() * 24.0f;
+        
+        printf("%.4f\t%d\t%d\r\n", T1_Vrms, VA_M[0], VA_M[1]);
+        
+        _VA_M[0] = 0;
+        _VA_M[1] = 4096;
     }
 }
 
 float GetVrms(void)
 {
-#ifdef WAVE_ARRY
-    for (uint32_t i = 0; i < N / 2; i++)
-    {
-        VA[2*i] += VA[2*i+1];
-    }
+    VA_M[0] += _VA_M[0];
+    VA_M[1] /= 2;
+    VA_M[1] += _VA_M[1];
+    VA_M[1] /= 2;
+    int sub = VA_M[0] - VA_M[1];
 
-    for (uint32_t i = 0; i < N / 4; i++)
-    {
-        VA[4*i] += VA[4*i+2];
-    }
-
-    uint64_t VA_VAL = 0;
-    for (uint32_t i = 0; i < N / 8; i++)
-    {
-        VA_VAL += VA[8*i] + VA[8*i+4];
-    }
-
-    VA_VAL /= N;
-    return sqrtf(VA_VAL);
-#else
-    VA_VAL /= N;
-    return sqrtf(VA_VAL);
-#endif
+    return sub * 3.3f / 4096 * 24.0f / 2 / sqrtf(2);
 }

@@ -218,7 +218,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
 
   else if (htim->Instance == TIM6) {
-    Arry_IN();
+    //Arry_IN();
   }
 /* USER CODE END Callback 1 */
 }

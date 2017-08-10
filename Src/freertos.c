@@ -68,8 +68,6 @@ osStaticThreadDef_t defaultTaskControlBlock;
 
 /* USER CODE BEGIN Variables */
 PWM_Basic_t PWM_BASIC[3];
-PWM_PID_t   PWM_PID[3];
-PWM_Regulator_t PWM_REGU[3];
 PWM_Tri_t   PWM_TRI;
 uint16_t pu16CurrentADC[6]; // ADC2使用DMA方式采集电流反馈
 /* USER CODE END Variables */
@@ -177,26 +175,16 @@ void PWM_DriverInit(void)
     PWM_BASIC[i].CC_Min = 0;
     PWM_BASIC[i].DutyCycle = 0.0f;
     PWM_BASIC[i].CC = 0;
-
-    PWM_PID[i].Kp = 0.1;
-    PWM_PID[i].Ki = 0.001;
-
-    PWM_REGU[i].PWM_BASIC = &PWM_BASIC[i];
-    PWM_REGU[i].PWM_PID = &PWM_PID[i];
-    PWM_REGU[i].SetValue = 0;
-    #if TARGET_V == 1
-    PWM_REGU[i].Input_V = 50;
-    PWM_REGU[i].Mode = PWM_REGULATOR_MODE_OUTPUT_V;
-    PWM_REGU[i].ID = i + 1;
-    #endif
   }
 
-  PWM_TRI.pPWM_A = PWM_REGU;
-  PWM_TRI.pPWM_B = PWM_REGU + 1;
-  PWM_TRI.pPWM_C = PWM_REGU + 2;
-  #if TARGET_V == 1
-  PWM_TRI.fTargetVoltage = 39.19;
-  #endif
+  PWM_TRI.pPWM_A = PWM_BASIC;
+  PWM_TRI.pPWM_B = PWM_BASIC + 1;
+  PWM_TRI.pPWM_C = PWM_BASIC + 2;
+  PWM_TRI.PID.Kp = 0.5;
+  PWM_TRI.PID.Ki = 0.03;
+  PWM_TRI.PID.Kd = 0;
+  PWM_TRI.fTargetVrms = 5;
+  PWM_TRI.fInputVoltage = 50;
   PWM_TRI.fPhaseOffsetB = 0;
   PWM_TRI.fPhaseOffsetC = 0;
   PWM_TRI.fTargetFreq = 50.0f;
@@ -216,13 +204,6 @@ void PWM_DriverInit(void)
 void PWM_CALLBACK(void)
 {
       PWM_TRI_STEP(&PWM_TRI);
-
-      // Sample
-
-      // Output
-      PWM_REGU_Update(PWM_REGU);
-      PWM_REGU_Update(PWM_REGU + 1);
-      PWM_REGU_Update(PWM_REGU + 2);
 }
 
 /* USER CODE END Application */
