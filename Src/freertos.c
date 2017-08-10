@@ -216,6 +216,13 @@ void PWM_DriverInit(void)
 void PWM_CALLBACK(void)
 {
       PWM_TRI_STEP(&PWM_TRI);
+
+      // Sample
+
+      // Output
+      PWM_REGU_Update(PWM_REGU);
+      PWM_REGU_Update(PWM_REGU + 1);
+      PWM_REGU_Update(PWM_REGU + 2);
 }
 
 /* USER CODE END Application */
