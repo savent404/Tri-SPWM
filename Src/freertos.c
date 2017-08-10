@@ -198,7 +198,7 @@ void PWM_DriverInit(void)
   HAL_ADCEx_InjectedStart(&hadc1);
   HAL_ADC_Start_DMA(&hadc2, (uint32_t*)pu16CurrentADC, 6);
 
-  HAL_TIM_Base_Start_IT(&htim6);
+  HAL_TIM_Base_Start(&htim6);
   HAL_TIM_Base_Start_IT(&htim1);
 }
 void PWM_CALLBACK(void)
