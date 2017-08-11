@@ -10,10 +10,12 @@ const uint8_t code_erea[16*1024] @ CODE_ERAE_ADDR;
 
 int16_t * const Para_pt[] = {
   (int16_t*)CODE_ERAE_ADDR + 0,
+  (int16_t*)CODE_ERAE_ADDR + 1,
 };
 
 GUI_Set_t Param[Para_NUM] = {
     {"Vfix", 1000, 1000, 1500, 500, 1e-3f},
+    {"Pfix", 0, 0, 1000, -1000, 1e-3f},
 };
 
 // 0-从内存加载实际参数到Param(Val)
@@ -25,14 +27,17 @@ void para_fresh(uint8_t flag)
     if (flag == 0)
     {
         Param[0].Val = (int)(PWM_TRI.fAmpFix / Param[0].gain);
+        Param[1].Val = (int)(PWM_TRI.fPhaseOffset / Param[1].gain);
     }
     else if (flag == 1)
     {
         PWM_TRI.fAmpFix = Param[0].Val * Param[0].gain;
+        PWM_TRI.fPhaseOffset = Param[1].Val * Param[1].gain;
     }
     else if (flag == 2)
     {
         Param[0].Val = *Para_pt[0];
+        Param[1].Val = *Para_pt[1];
     }
     else if (flag == 3)
     {
@@ -45,12 +50,14 @@ void para_fresh(uint8_t flag)
         if (status == HAL_OK)
         {
             HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, (uint32_t)Para_pt[0], Param[0].Val);
+            HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, (uint32_t)Para_pt[1], Param[1].Val);
         }
 
         HAL_FLASH_Lock();
     }
     
     Param[0]._Val = Param[0].Val;
+    Param[1]._Val = Param[1].Val;
 }
 
 
@@ -89,7 +96,8 @@ GUI_Status_t ParaSet_Stage(uint8_t init_flag)
 
     if (KEY_STATUS & KEY1_V)
     {
-        while (KEY_STATUS & KEY1_V) { osDelay(5);}
+        // while (KEY_STATUS & KEY1_V) { osDelay(5);}
+        osDelay(100);
         Para_pos += 1;
         Para_pos %= Para_NUM;
         SETFONT(20);
@@ -100,7 +108,8 @@ GUI_Status_t ParaSet_Stage(uint8_t init_flag)
 
     if (KEY_STATUS & KEY2_V)
     {
-        while (KEY_STATUS & KEY2_V) { osDelay(5);}
+        // while (KEY_STATUS & KEY2_V) { osDelay(5);}
+        osDelay(100);
         SETFONT(20);
         
         para_fresh(2); // Read form flash
@@ -115,7 +124,8 @@ GUI_Status_t ParaSet_Stage(uint8_t init_flag)
 
     if (KEY_STATUS & KEY0_V)
     {
-        while (KEY_STATUS & KEY0_V) { osDelay(5); }
+        // while (KEY_STATUS & KEY0_V) { osDelay(5); }
+        osDelay(100);
         Param[Para_pos].Val = LIMIT(Param[Para_pos]._Val, Param[Para_pos].max, Param[Para_pos].min);
 
         para_fresh(3); // write to flash

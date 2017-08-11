@@ -63,10 +63,10 @@
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId T01Handle;
-uint32_t defaultTaskBuffer[ 64 ];
+uint32_t defaultTaskBuffer[ 128 ];
 osStaticThreadDef_t defaultTaskControlBlock;
 osThreadId GUIHandle;
-uint32_t GUIBuffer[ 512 ];
+uint32_t GUIBuffer[ 1024 ];
 osStaticThreadDef_t GUIControlBlock;
 
 /* USER CODE BEGIN Variables */
@@ -140,11 +140,11 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of T01 */
-  osThreadStaticDef(T01, StartDefaultTask, osPriorityNormal, 0, 64, defaultTaskBuffer, &defaultTaskControlBlock);
+  osThreadStaticDef(T01, StartDefaultTask, osPriorityNormal, 0, 128, defaultTaskBuffer, &defaultTaskControlBlock);
   T01Handle = osThreadCreate(osThread(T01), NULL);
 
   /* definition and creation of GUI */
-  osThreadStaticDef(GUI, StartGUI, osPriorityIdle, 0, 512, GUIBuffer, &GUIControlBlock);
+  osThreadStaticDef(GUI, StartGUI, osPriorityIdle, 0, 1024, GUIBuffer, &GUIControlBlock);
   GUIHandle = osThreadCreate(osThread(GUI), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -191,7 +191,7 @@ void PWM_DriverInit(void)
     PWM_BASIC[i].Frequence = 40e3;
     PWM_BASIC[i].ReloadValue = 3600;
     PWM_BASIC[i].PWM_ID = i + 1;
-    PWM_BASIC[i].CC_Max = 3600;
+    PWM_BASIC[i].CC_Max = 3600 - 1;
     PWM_BASIC[i].CC_Min = 0;
     PWM_BASIC[i].DutyCycle = 0.0f;
     PWM_BASIC[i].CC = 0;
@@ -201,7 +201,7 @@ void PWM_DriverInit(void)
     PWM_BASIC[i + 3].PWM_ID = i + 3 + 1;
     PWM_BASIC[i + 3].Frequence = 40e3;
     PWM_BASIC[i + 3].ReloadValue = 1800;
-    PWM_BASIC[i + 3].CC_Max = 1800 - 1;
+    PWM_BASIC[i + 3].CC_Max = 1800 -1;
     PWM_BASIC[i + 3].CC_Min = 0;
     PWM_BASIC[i + 3].DutyCycle = 0.0f;
     PWM_BASIC[i + 3].CC = 0;
@@ -219,8 +219,6 @@ void PWM_DriverInit(void)
   PWM_TRI.PID.Kd = 0;
   PWM_TRI.fTargetVrms = 5;
   PWM_TRI.fInputVoltage = 50;
-  PWM_TRI.fPhaseOffsetB = 0;
-  PWM_TRI.fPhaseOffsetC = 0;
   PWM_TRI.fTargetFreq = 50.0f;
   PWM_TRI.uSampleFreq = 5e3;
   PWM_TRI_Init(&PWM_TRI);
