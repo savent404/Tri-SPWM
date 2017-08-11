@@ -214,10 +214,15 @@ void PWM_DriverInit(void)
   PWM_TRI.pPWM_BS = PWM_BASIC + 4;
   PWM_TRI.pPWM_CS = PWM_BASIC + 5;
   
-  PWM_TRI.PID.Kp = 0.5;
-  PWM_TRI.PID.Ki = 0.03;
+  PWM_TRI.PID.Kp = 0.8;
+  PWM_TRI.PID.Ki = 0.04;
   PWM_TRI.PID.Kd = 0;
-  PWM_TRI.fTargetVrms = 5;
+
+  PWM_TRI.K = 1.0f;
+
+  PWM_TRI.PID_I.Kp = 1.0;
+  PWM_TRI.PID_I.Ki = 0.1;
+  PWM_TRI.fTargetVrms = 10;
   PWM_TRI.fInputVoltage = 50;
   PWM_TRI.fTargetFreq = 50.0f;
   PWM_TRI.uSampleFreq = 5e3;
