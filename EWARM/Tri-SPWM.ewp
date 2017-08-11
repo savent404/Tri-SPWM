@@ -351,7 +351,8 @@
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/include</state>
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</state>
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/PWM-Drive</state>
-                <state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /></option>
+                    <state>$PROJ_DIR$/../Middlewares/Third_Party/LittleGUI</state>
+                <state /><state /><state /><state /><state /><state /><state /><state /></option>
                 <option>
                     <name>CCStdIncCheck</name>
                     <state>0</state>
@@ -1051,6 +1052,9 @@
                 <name>$PROJ_DIR$\..\Src\main.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\spi.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\stm32f3xx_hal_msp.c</name>
             </file>
             <file>
@@ -1123,6 +1127,12 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc_ex.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_spi_ex.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_tim.c</name>
             </file>
             <file>
@@ -1163,6 +1173,36 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</name>
+            </file>
+        </group>
+        <group>
+            <name>LittleGUI</name>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\240128G1.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font12.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font16.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font20.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font24.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font8.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LCD_DRAW.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LCD_TEXT.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LittleGUI.c</name>
             </file>
         </group>
         <group>
