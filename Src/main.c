@@ -51,11 +51,13 @@
 #include "cmsis_os.h"
 #include "adc.h"
 #include "dma.h"
+#include "spi.h"
 #include "tim.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 #include "wave.h"
+#include "littleGUI.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -109,6 +111,8 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM1_Init();
   MX_TIM6_Init();
+  MX_SPI1_Init();
+  MX_TIM3_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -214,11 +218,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
 /* USER CODE BEGIN Callback 1 */
   else if (htim->Instance == TIM1) {
+    static uint8_t cnt = 0;
+    if (++cnt >= 5)
+    {
+      cnt = 0;
+      KEY_Scan();
+    }
     PWM_CALLBACK();
   }
 
   else if (htim->Instance == TIM6) {
     //Arry_IN();
+
   }
 /* USER CODE END Callback 1 */
 }

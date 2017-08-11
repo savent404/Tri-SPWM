@@ -56,6 +56,19 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define KEY1_Pin GPIO_PIN_13
+#define KEY1_GPIO_Port GPIOC
+#define KEY2_Pin GPIO_PIN_14
+#define KEY2_GPIO_Port GPIOC
+#define KEY3_Pin GPIO_PIN_15
+#define KEY3_GPIO_Port GPIOC
+#define KEY0_Pin GPIO_PIN_15
+#define KEY0_GPIO_Port GPIOB
+#define CTLCS_Pin GPIO_PIN_8
+#define CTLCS_GPIO_Port GPIOB
+#define DATACS_Pin GPIO_PIN_9
+#define DATACS_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

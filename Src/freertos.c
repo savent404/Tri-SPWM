@@ -62,9 +62,12 @@
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
-osThreadId defaultTaskHandle;
+osThreadId T01Handle;
 uint32_t defaultTaskBuffer[ 128 ];
 osStaticThreadDef_t defaultTaskControlBlock;
+osThreadId GUIHandle;
+uint32_t GUIBuffer[ 800 ];
+osStaticThreadDef_t GUIControlBlock;
 
 /* USER CODE BEGIN Variables */
 PWM_Basic_t PWM_BASIC[3];
@@ -74,6 +77,7 @@ uint16_t pu16CurrentADC[6]; // ADC2使用DMA方式采集电流反馈
 
 /* Function prototypes -------------------------------------------------------*/
 void StartDefaultTask(void const * argument);
+void StartGUI(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -135,9 +139,13 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadStaticDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128, defaultTaskBuffer, &defaultTaskControlBlock);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+  /* definition and creation of T01 */
+  osThreadStaticDef(T01, StartDefaultTask, osPriorityNormal, 0, 64, defaultTaskBuffer, &defaultTaskControlBlock);
+  T01Handle = osThreadCreate(osThread(T01), NULL);
+
+  /* definition and creation of GUI */
+  osThreadStaticDef(GUI, StartGUI, osPriorityIdle, 0, 512, GUIBuffer, &GUIControlBlock);
+  GUIHandle = osThreadCreate(osThread(GUI), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -161,6 +169,18 @@ __weak void StartDefaultTask(void const * argument)
     osDelay(1000);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* StartGUI function */
+__weak void StartGUI(void const * argument)
+{
+  /* USER CODE BEGIN StartGUI */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartGUI */
 }
 
 /* USER CODE BEGIN Application */

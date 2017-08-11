@@ -49,16 +49,16 @@
                 <option>
                     <name>GRuntimeLibSelect</name>
                     <version>0</version>
-                    <state>2</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>GRuntimeLibSelectSlave</name>
                     <version>0</version>
-                    <state>2</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state>Use the full configuration of the C/C++ runtime library. Full locale interface, C locale, file descriptor support, multibytes in printf and scanf, and hex floats in strtod.</state>
+                    <state>Use the normal configuration of the C/C++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -112,7 +112,7 @@
                 </option>
                 <option>
                     <name>RTConfigPath2</name>
-                    <state>$TOOLKIT_DIR$\INC\c\DLib_Config_Full.h</state>
+                    <state>$TOOLKIT_DIR$\INC\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
@@ -190,11 +190,11 @@
                 </option>
                 <option>
                     <name>GenLocaleTags</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>GenLocaleDisplayOnly</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>DSPExtension</name>
@@ -257,19 +257,19 @@
                 </option>
                 <option>
                     <name>CCDiagSuppress</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CCDiagRemark</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CCDiagWarning</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CCDiagError</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CCObjPrefix</name>
@@ -298,7 +298,7 @@
                 </option>
                 <option>
                     <name>IExtraOptions</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CCLangConformance</name>
@@ -334,7 +334,7 @@
                 </option>
                 <option>
                     <name>PreInclude</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CompilerMisraOverride</name>
@@ -351,7 +351,8 @@
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/include</state>
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</state>
                     <state>$PROJ_DIR$/../Middlewares/Third_Party/PWM-Drive</state>
-                <state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /><state /></option>
+                    <state>$PROJ_DIR$/../Middlewares/Third_Party/LittleGUI</state>
+                </option>
                 <option>
                     <name>CCStdIncCheck</name>
                     <state>0</state>
@@ -500,15 +501,15 @@
                 </option>
                 <option>
                     <name>AWarnOne</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>AWarnRange1</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>AWarnRange2</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>ADebug</name>
@@ -520,7 +521,7 @@
                 </option>
                 <option>
                     <name>ADefines</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>AList</name>
@@ -620,7 +621,7 @@
                 </option>
                 <option>
                     <name>AExtraOptionsV2</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>AsmNoLiteralPool</name>
@@ -662,8 +663,8 @@
             <name>CUSTOM</name>
             <archiveVersion>3</archiveVersion>
             <data>
-                <extensions />
-                <cmdline />
+                <extensions></extensions>
+                <cmdline></cmdline>
                 <hasPrio>0</hasPrio>
             </data>
         </settings>
@@ -676,8 +677,8 @@
             <name>BUILDACTION</name>
             <archiveVersion>1</archiveVersion>
             <data>
-                <prebuild />
-                <postbuild />
+                <prebuild></prebuild>
+                <postbuild></postbuild>
             </data>
         </settings>
         <settings>
@@ -709,31 +710,31 @@
                 </option>
                 <option>
                     <name>IlinkKeepSymbols</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkRawBinaryFile</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkRawBinarySymbol</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkRawBinarySegment</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkRawBinaryAlign</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkDefines</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkConfigDefines</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkMapFile</name>
@@ -769,7 +770,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkEnableRemarks</name>
@@ -777,19 +778,19 @@
                 </option>
                 <option>
                     <name>IlinkSuppressDiags</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkTreatAsRem</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkTreatAsWarn</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkTreatAsErr</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkWarningsAreErrors</name>
@@ -801,7 +802,7 @@
                 </option>
                 <option>
                     <name>IlinkExtraOptions</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkLowLevelInterfaceSlave</name>
@@ -813,7 +814,7 @@
                 </option>
                 <option>
                     <name>IlinkAdditionalLibs</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkOverrideProgramEntryLabel</name>
@@ -948,11 +949,11 @@
                 </option>
                 <option>
                     <name>IlinkStackControlFile</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkStackCallGraphFile</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>CrcAlgorithm</name>
@@ -974,7 +975,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile_AltDefault</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IlinkEncInput</name>
@@ -1007,7 +1008,7 @@
                 <debug>1</debug>
                 <option>
                     <name>IarchiveInputs</name>
-                    <state />
+                    <state></state>
                 </option>
                 <option>
                     <name>IarchiveOverride</name>
@@ -1039,6 +1040,12 @@
                 <name>$PROJ_DIR$\..\Src\adc.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\cpu_utils.c</name>
+                <excluded>
+                    <configuration>Tri-SPWM</configuration>
+                </excluded>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\dma.c</name>
             </file>
             <file>
@@ -1048,7 +1055,13 @@
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\GUI_Wrapper.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\spi.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32f3xx_hal_msp.c</name>
@@ -1123,6 +1136,12 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc_ex.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_spi_ex.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_tim.c</name>
             </file>
             <file>
@@ -1163,6 +1182,36 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\timers.c</name>
+            </file>
+        </group>
+        <group>
+            <name>LittleGUI</name>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\240128G1.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font12.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font16.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font20.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font24.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\font8.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LCD_DRAW.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LCD_TEXT.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\LittleGUI\LittleGUI.c</name>
             </file>
         </group>
         <group>
