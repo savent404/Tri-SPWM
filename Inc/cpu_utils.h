@@ -1,10 +1,14 @@
 /**
   ******************************************************************************
-  * @file    stm32f3xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @file    cpu_utils.h
+  * @author  MCD Application Team
+  * @version V1.1.0
+  * @date    20-November-2014
+  * @brief   Header for cpu_utils module
   ******************************************************************************
+  * @attention
   *
-  * COPYRIGHT(c) 2017 STMicroelectronics
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -29,38 +33,35 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
+  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F3xx_IT_H
-#define __STM32F3xx_IT_H
+#ifndef _CPU_UTILS_H__
+#define _CPU_UTILS_H__
 
 #ifdef __cplusplus
  extern "C" {
-#endif 
+#endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f3xx_hal.h"
+#include "freeRTOS.h"
+#include "cmsis_os.h"
+#include "main.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+/* Exported variables --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+#define CALCULATION_PERIOD    1000
 
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void MemManage_Handler(void);
-void BusFault_Handler(void);
-void UsageFault_Handler(void);
-void DebugMon_Handler(void);
-void SysTick_Handler(void);
-void DMA1_Channel2_IRQHandler(void);
-void TIM1_UP_TIM16_IRQHandler(void);
-void TIM6_DAC1_IRQHandler(void);
-void TIM7_DAC2_IRQHandler(void);
+/* Exported functions ------------------------------------------------------- */
+uint16_t osGetCPUUsage (void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32F3xx_IT_H */
+#endif /* _CPU_UTILS_H__ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1171,6 +1171,9 @@
                 <name>$PROJ_DIR$\..\Src\adc.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\cpu_utils.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\dma.c</name>
             </file>
             <file>
@@ -1178,6 +1181,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\GUI_Wrapper.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
