@@ -171,7 +171,7 @@ void PWM_DriverInit(void)
     PWM_BASIC[i].Frequence = 40e3;
     PWM_BASIC[i].ReloadValue = 3600;
     PWM_BASIC[i].PWM_ID = i + 1;
-    PWM_BASIC[i].CC_Max = 3600-1;
+    PWM_BASIC[i].CC_Max = 3600;
     PWM_BASIC[i].CC_Min = 0;
     PWM_BASIC[i].DutyCycle = 0.0f;
     PWM_BASIC[i].CC = 0;
@@ -188,7 +188,7 @@ void PWM_DriverInit(void)
   PWM_TRI.fPhaseOffsetB = 0;
   PWM_TRI.fPhaseOffsetC = 0;
   PWM_TRI.fTargetFreq = 50.0f;
-  PWM_TRI.uSampleFreq = 10e3;
+  PWM_TRI.uSampleFreq = 5e3;
   PWM_TRI_Init(&PWM_TRI);
 
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
