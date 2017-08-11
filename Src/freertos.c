@@ -63,14 +63,14 @@
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId T01Handle;
-uint32_t defaultTaskBuffer[ 128 ];
+uint32_t defaultTaskBuffer[ 64 ];
 osStaticThreadDef_t defaultTaskControlBlock;
 osThreadId GUIHandle;
-uint32_t GUIBuffer[ 800 ];
+uint32_t GUIBuffer[ 512 ];
 osStaticThreadDef_t GUIControlBlock;
 
 /* USER CODE BEGIN Variables */
-PWM_Basic_t PWM_BASIC[3];
+PWM_Basic_t PWM_BASIC[6];
 PWM_Tri_t   PWM_TRI;
 uint16_t pu16CurrentADC[6]; // ADC2使用DMA方式采集电流反馈
 /* USER CODE END Variables */
@@ -196,10 +196,24 @@ void PWM_DriverInit(void)
     PWM_BASIC[i].DutyCycle = 0.0f;
     PWM_BASIC[i].CC = 0;
   }
+  for (int i = 0; i < 3; i++)
+  {
+    PWM_BASIC[i + 3].PWM_ID = i + 3 + 1;
+    PWM_BASIC[i + 3].Frequence = 40e3;
+    PWM_BASIC[i + 3].ReloadValue = 1800;
+    PWM_BASIC[i + 3].CC_Max = 1800 - 1;
+    PWM_BASIC[i + 3].CC_Min = 0;
+    PWM_BASIC[i + 3].DutyCycle = 0.0f;
+    PWM_BASIC[i + 3].CC = 0;
+  }
 
   PWM_TRI.pPWM_A = PWM_BASIC;
   PWM_TRI.pPWM_B = PWM_BASIC + 1;
   PWM_TRI.pPWM_C = PWM_BASIC + 2;
+  PWM_TRI.pPWM_AS = PWM_BASIC + 3;
+  PWM_TRI.pPWM_BS = PWM_BASIC + 4;
+  PWM_TRI.pPWM_CS = PWM_BASIC + 5;
+  
   PWM_TRI.PID.Kp = 0.5;
   PWM_TRI.PID.Ki = 0.03;
   PWM_TRI.PID.Kd = 0;
@@ -212,13 +226,14 @@ void PWM_DriverInit(void)
   PWM_TRI_Init(&PWM_TRI);
 
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
-  HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
+  //HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
   HAL_Delay(10);
   
   HAL_ADCEx_InjectedStart(&hadc1);
-  HAL_ADC_Start_DMA(&hadc2, (uint32_t*)pu16CurrentADC, 6);
+  //HAL_ADC_Start_DMA(&hadc2, (uint32_t*)pu16CurrentADC, 6);
 
   HAL_TIM_Base_Start(&htim6);
+  HAL_TIM_Base_Start(&htim2);
   HAL_TIM_Base_Start_IT(&htim1);
 }
 void PWM_CALLBACK(void)
