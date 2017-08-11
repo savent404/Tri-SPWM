@@ -220,9 +220,9 @@ void PWM_DriverInit(void)
 
   PWM_TRI.K = 1.0f;
 
-  PWM_TRI.PID_I.Kp = 1.0;
-  PWM_TRI.PID_I.Ki = 0.1;
-  PWM_TRI.fTargetVrms = 10;
+  PWM_TRI.PID_I.Kp = 0.1;
+  PWM_TRI.PID_I.Ki = 0.01;
+  PWM_TRI.fTargetVrms = 5;
   PWM_TRI.fInputVoltage = 50;
   PWM_TRI.fTargetFreq = 50.0f;
   PWM_TRI.uSampleFreq = 5e3;
